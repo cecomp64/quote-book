@@ -2,9 +2,10 @@ class QuotesController < ApplicationController
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json
+  QUOTES_PER_PAGE = 20
 
   def index
-    @quotes = Quote.all
+    @quotes = Quote.all.page(params[:page]).per(QUOTES_PER_PAGE)
     respond_with(@quotes)
   end
 

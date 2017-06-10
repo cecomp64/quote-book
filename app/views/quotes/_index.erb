@@ -1,6 +1,10 @@
 <% quotes ||= [] %>
 <% width ||= 6 %>
 
+<div class="col-xs-12">
+  <%= paginate quotes %>
+</div>
+
 <% quotes.each do |quote| %>
     <%= render partial: 'quotes/show', locals: {quote: quote, width: width} %>
 <% end %>

@@ -44,3 +44,5 @@ gem 'bootstrap-generators', '~> 3.3.4'
 
 # Authentication
 gem 'devise'
+
+gem 'kaminari'

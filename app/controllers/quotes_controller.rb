@@ -37,6 +37,27 @@ class QuotesController < ApplicationController
   end
 
   private
+
+    def anonymous
+      Person.find_or_create_by(name: 'Anonymous')
+    end
+
+    # Convert a text person to a Person object
+    def personify_params(p)
+      return p if(!p.is_a?(Hash))
+      dup = p.dup
+
+      [:attribution, :author].each do |attribute|
+        if(dup[attribute])
+          dup[attribute] = dup[attribute].strip.empty? ? anonymous : Person.find_or_create_by(name: dup[attribute].downcase.strip)
+        else
+          dup[attribute] = anonymous
+        end
+      end
+
+      return dup
+    end
+
     def set_quote
       @quote = Quote.find(params[:id])
     end

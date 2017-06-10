@@ -1,7 +1,7 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @quotes = Quote.all
@@ -21,8 +21,13 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @quote = Quote.new(quote_params)
-    @quote.save
+    qp = personify_params(quote_params)
+    @quote = Quote.new(qp)
+
+    if(@quote.save && @quote.attribution)
+      @quote.attribution.update_attribute(:num_quotes, @quote.attribution.quotes.count)
+    end
+
     respond_with(@quote)
   end
 

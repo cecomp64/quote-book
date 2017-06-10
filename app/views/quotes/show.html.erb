@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to quotes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_quote_path(@quote), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show quote</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Text:</dt>
+  <dd><%= @quote.text %></dd>
+
+  <dt>Attribution:</dt>
+  <dd><%= @quote.attribution %></dd>
+
+  <dt>Author:</dt>
+  <dd><%= @quote.author %></dd>
+
+</dl>

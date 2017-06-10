@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610164906) do
+ActiveRecord::Schema.define(version: 20170610174856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20170610164906) do
     t.integer  "author"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score"
+  end
+
+  add_index "quotes", ["attribution"], name: "index_quotes_on_attribution", using: :btree
+  add_index "quotes", ["author"], name: "index_quotes_on_author", using: :btree
+  add_index "quotes", ["score"], name: "index_quotes_on_score", using: :btree
+
+  create_table "quotes_votes", id: false, force: true do |t|
+    t.integer "quote_id", null: false
+    t.integer "vote_id",  null: false
   end
 
   create_table "users", force: true do |t|
@@ -47,5 +57,21 @@ ActiveRecord::Schema.define(version: 20170610164906) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_votes", id: false, force: true do |t|
+    t.integer "user_id", null: false
+    t.integer "vote_id", null: false
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "quote_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["quote_id"], name: "index_votes_on_quote_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end

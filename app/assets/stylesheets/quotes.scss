@@ -1,0 +1,34 @@
+ .table-overflow {
+   overflow-x: auto;
+ }
+
+ // Layout
+ h1 {
+   margin-bottom: 40px;
+ }
+
+ .quote-button {
+   width: 100%;
+ }
+ // Quote-specific
+
+ .quote-box:hover {
+   background: #e5e5e5;
+ }
+
+ .quote-box {
+   text-align: center;
+ }
+
+ .quote {
+   font-style: italic;
+ }
+
+ .attribution {
+   font-weight: bold;
+ }
+
+ .author {
+   font-size: smaller;
+   text-align: left;
+ }

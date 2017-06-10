@@ -1,0 +1,6 @@
+<% quotes ||= [] %>
+<% width ||= 6 %>
+
+<% quotes.each do |quote| %>
+    <%= render partial: 'quotes/show', locals: {quote: quote, width: width} %>
+<% end %>

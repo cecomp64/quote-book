@@ -23,10 +23,11 @@ class QuotesController < ApplicationController
 
   def create
     qp = personify_params(quote_params)
+    qp[:score] = 0
     @quote = Quote.new(qp)
 
-    if(@quote.save && @quote.attribution)
-      @quote.attribution.update_attribute(:num_quotes, @quote.attribution.quotes.count)
+    if(@quote.save)
+      @quote.attribution.update_attribute(:num_quotes, @quote.attribution.quotes.count) if(@quote.attribution)
     end
 
     respond_with(@quote)

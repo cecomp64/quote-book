@@ -49,7 +49,7 @@ class QuotesController < ApplicationController
 
       [:attribution, :author].each do |attribute|
         if(dup[attribute])
-          dup[attribute] = dup[attribute].strip.empty? ? anonymous : Person.find_or_create_by(name: dup[attribute].downcase.strip)
+          dup[attribute] = dup[attribute].strip.empty? ? anonymous : Person.find_or_create_by(name: dup[attribute].strip)
         else
           dup[attribute] = anonymous
         end

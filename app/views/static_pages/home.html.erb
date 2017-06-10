@@ -1,4 +1,40 @@
 <div class="page-header">
-  <h1>StaticPages#home</h1>
+  <h1>The Quote Book</h1>
 </div>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Random Quote!</h2>
+    <%= render partial: 'quotes/show', locals: {quote: @random_quote} %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to 'Add A Quote!', new_quote_path, role: :button, class: 'btn btn-default' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>The Best Quotes of All Time!</h2>
+    <%= render partial: 'quotes/index', locals: {quotes: @top_quotes} %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Recent Quotes!</h2>
+    <%= render partial: 'quotes/index', locals: {quotes: @recent_quotes} %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Top Quoters!</h2>
+    <%= render partial: 'people/index', locals: {quotes: @top_quoters} %>
+  </div>
+</div>
+

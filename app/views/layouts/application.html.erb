@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Starter Template for Bootstrap</title>
+  <title>The Quote Book</title>
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -28,20 +28,22 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "Project name", "#", class: "navbar-brand" %>
+        <%= link_to 'The Quote Book', root_path, class: 'navbar-brand' %>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><%= link_to 'Quotes', quotes_path %></li>
+          <li><%= link_to 'People', people_path %></li>
+          <% if !user_signed_in? %>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
   </nav>
   <div class="container">
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
+      <%= content_tag :div, class: "alert alert-#{ name.to_sym == :error ? "danger" : "success" } alert-dismissable", role: "alert" do %>
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <%= msg %>
       <% end %>

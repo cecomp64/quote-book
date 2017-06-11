@@ -1,8 +1,9 @@
 <% quotes ||= [] %>
 <% width ||= 6 %>
+<% pagination_param ||= :page %>
 
 <div class="col-xs-12">
-  <%= paginate(quotes) if(!quotes.is_a?(Array)) %>
+  <%= paginate(quotes, param_name: pagination_param) if(!quotes.is_a?(Array)) %>
 </div>
 
 <% quotes.each do |quote| %>

@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   resources :people
 
-  get 'search/:query' => 'quotes#search', as: :search_path
+  get 'search/:query' => 'quotes#search', as: :query
+  get 'search' => 'quotes#search', as: :search
   resources :quotes
 
   devise_for :users

@@ -2,14 +2,27 @@
   <h1>The Search Results</h1>
 </div>
 
-<%= render 'quotes/add_quote' %>
+<%# render 'quotes/add_quote' %>
 
+<% num_empty_vectors = 0 %>
 <% Quote::SEARCH_VECTORS.each do |vector| %>
-<div class="row">
-  <div class="col-xs-12">
-    <h2><%=vector.to_s.titleize%> <%=@query%></h2>
-    <%= render partial: 'quotes/index', locals: {quotes: @results[vector]} %>
-  </div>
-</div>
+    <% if(@results[vector].size == 0) %>
+        <% num_empty_vectors += 1 %>
+        <% next %>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2><%=vector.to_s.titleize%> <%=@query%></h2>
+        <%= render partial: 'quotes/index', locals: {quotes: @results[vector]} %>
+      </div>
+    </div>
 <% end %>
 
+<% if(num_empty_vectors == Quote::SEARCH_VECTORS.size) %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Nobody Said It!</h2>
+        <p>Your search for "<%=@query%>" turned up zero results.  Search better.  Try harder.</p>
+      </div>
+    </div>
+<% end %>

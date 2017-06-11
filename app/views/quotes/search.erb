@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>The Search Results</h1>
+</div>
+
+<%= render 'quotes/add_quote' %>
+
+<% Quote::SEARCH_VECTORS.each do |vector| %>
+<div class="row">
+  <div class="col-xs-12">
+    <h2><%=vector.to_s.titleize%> <%=@query%></h2>
+    <%= render partial: 'quotes/index', locals: {quotes: @results[vector]} %>
+  </div>
+</div>
+<% end %>
+

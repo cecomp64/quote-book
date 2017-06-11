@@ -5,4 +5,6 @@ class Quote < ActiveRecord::Base
 
   validates_presence_of :text, :author, :attribution
   validates_uniqueness_of :text, case_sensitive: false
+
+  SEARCH_VECTORS = [:attributed_to, :contains, :authored_by]
 end

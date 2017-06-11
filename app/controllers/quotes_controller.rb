@@ -43,6 +43,20 @@ class QuotesController < ApplicationController
     respond_with(@quote)
   end
 
+  def search
+    @query = params[:query]
+    @results = {}
+    results_per_category = 10
+
+    @results[:attributed_to] = Quote.joins(:attribution).where('people.name ILIKE ?', "%#{@query}%")
+    @results[:authored_by] = Quote.joins(:author).where('people.name ILIKE ?', "%#{@query}%")
+    @results[:contains] = Quote.where('quotes.text ILIKE ?', "%#{@query}%")
+
+    Quote::SEARCH_VECTORS.each do |vector|
+      @results[vector] = @results[vector].page(params[vector]).per(results_per_category) if(@results[vector])
+    end
+  end
+
   private
 
     def anonymous

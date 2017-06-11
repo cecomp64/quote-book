@@ -32,7 +32,7 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><%# link_to 'Quotes', quotes_path %></li>
+          <li><%= link_to 'Add a Quote', new_quote_path %></li>
           <li><%# link_to 'People', people_path %></li>
           <% if !user_signed_in? %>
               <li><%# link_to 'Sign In', new_user_session_path %></li>

@@ -1,17 +1,23 @@
 <% quote ||= nil %>
 <% width ||= 6 %>
+<% mpq = quote %>
 
-<% if quote  %>
+<% if mpq %>
     <div class="col-xs-12 col-sm-<%=width%>">
       <div class="quote-box">
         <table class="table table-bordered table-responsive">
           <tbody>
             <tr>
-              <td><span class="quote"><%= quote.text %></span> <p class="attribution"><%= display_person(quote.attribution) %></p></td>
+              <td>
+                <% mpq.quotes.each do |q| %>
+                    <p class="quote"><%= q.text %></p>
+                    <p class="attribution"><%= display_person(q.attribution) %></p>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td>
-                <span class="author">Submitted by: <%= display_person(quote.author) %></span>
+                <span class="author">Submitted by: <%= display_person(mpq.author) %></span>
               </td>
             </tr>
           </tbody>

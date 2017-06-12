@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610180703) do
+ActiveRecord::Schema.define(version: 20170611235727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "multi_part_quotes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "author"
+    t.integer  "score"
+  end
 
   create_table "people", force: true do |t|
     t.string   "name"
@@ -28,15 +35,13 @@ ActiveRecord::Schema.define(version: 20170610180703) do
   create_table "quotes", force: true do |t|
     t.text     "text"
     t.integer  "attribution"
-    t.integer  "author"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score"
+    t.integer  "order"
+    t.integer  "multi_part_quote_id"
   end
 
   add_index "quotes", ["attribution"], name: "index_quotes_on_attribution", using: :btree
-  add_index "quotes", ["author"], name: "index_quotes_on_author", using: :btree
-  add_index "quotes", ["score"], name: "index_quotes_on_score", using: :btree
 
   create_table "quotes_votes", id: false, force: true do |t|
     t.integer "quote_id", null: false

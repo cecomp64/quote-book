@@ -6,7 +6,7 @@ class AddAuthorToMultiPartQuotes < ActiveRecord::Migration
 
     # Create Multi Part Quote for every Quote
     Quote.all.each do |quote|
-      mpq = MultiPartQuote.create(author: quote.author)
+      mpq = MultiPartQuote.create(author: Person.find(quote.author))
       mpq.quotes << quote
       quote.save
     end

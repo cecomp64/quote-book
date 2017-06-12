@@ -12,6 +12,12 @@
         <%= render partial: 'quotes/index', locals: {quotes: @my_quotes, pagination_param: :my_quotes} %>
       </div>
     </div>
+<% else %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'quotes/add_quote' %>
+      </div>
+    </div>
 <% end %>
 
 <% if @their_quotes.size > 0 %>

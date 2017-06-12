@@ -1,17 +1,35 @@
-<div class="page-header">
-  <%= link_to people_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_person_path(@person), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show person</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="home"><%=@person.name%></h1>
+    <%= render partial: 'quotes/show', locals: {quote: @random_quote, width: 12} %>
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @person.name %></dd>
+<% if @my_quotes.size > 0 %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>All The Stuff You Said</h2>
+        <%= render partial: 'quotes/index', locals: {quotes: @my_quotes, pagination_param: :my_quotes} %>
+      </div>
+    </div>
+<% end %>
 
-</dl>
+<% if @their_quotes.size > 0 %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>All The Stuff You Said They Said</h2>
+        <%= render partial: 'quotes/index', locals: {quotes: @their_quotes, pagination_param: :their_quotes} %>
+      </div>
+    </div>
+<% end %>
+
+
+<% if(@my_quotes.size == 0) && (@their_quotes.size == 0) %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2><%= @person.name %> Needs to Say More Stuff!</h2>
+        <%= render partial: 'quotes/add_quote' %>
+      </div>
+    </div>
+<% end %>
+

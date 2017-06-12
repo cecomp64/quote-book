@@ -9,6 +9,9 @@ class PeopleController < ApplicationController
   end
 
   def show
+    @random_quote = @person.quotes.order('RANDOM()').first
+    @my_quotes = @person.quotes.page(params[:my_quotes]).per(5)
+    @their_quotes = @person.entries.page(params[:their_quotes]).per(5)
     respond_with(@person)
   end
 

@@ -1,11 +1,11 @@
 <%# form_for(@quote, html: { class: "form-horizontal", role: "form" }) do |f| %>
 <%= form_tag(quotes_path, class: "form-horizontal", role: "form") do %>
 
-    <div id="quote_forms">
+    <table id="quote_forms" class="table-responsive table table-striped table-bordered">
       <% @quote.quotes.each do |quote| %>
           <%= render partial: 'quote_form', locals: {quote: quote} %>
       <% end %>
-    </div>
+    </table>
 
     <div class="form-group">
       <%= label_tag :author, 'Who Are You?', class: "col-sm-2 control-label" %>

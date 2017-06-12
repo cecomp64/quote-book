@@ -1,11 +1,12 @@
 <% quotes ||= [] %>
 <% width ||= 6 %>
 <% pagination_param ||= :page %>
+<% query ||= nil %>
 
 <div class="col-xs-12">
   <%= paginate(quotes, param_name: pagination_param) if(!quotes.is_a?(Array)) %>
 </div>
 
 <% quotes.each do |quote| %>
-    <%= render partial: 'quotes/show', locals: {quote: quote, width: width} %>
+    <%= render partial: 'quotes/show', locals: {quote: quote, width: width, query: query} %>
 <% end %>

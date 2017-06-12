@@ -1,6 +1,7 @@
 <% quote ||= nil %>
 <% width ||= 6 %>
 <% mpq = quote %>
+<% query ||= nil %>
 
 <% if mpq %>
     <div class="col-xs-12 col-sm-<%=width%>">
@@ -10,14 +11,14 @@
             <tr>
               <td>
                 <% mpq.quotes.order(order: :asc).each do |q| %>
-                    <p class="quote"><%= q.text %></p>
-                    <p class="attribution"><%= display_person(q.attribution) %></p>
+                    <p class="quote"><%= highlight q.text, query %></p>
+                    <p class="attribution"><%= highlight display_person(q.attribution), query %></p>
                 <% end %>
               </td>
             </tr>
             <tr>
               <td>
-                <span class="author">Submitted by: <%= display_person(mpq.author) %></span>
+                <span class="author">Submitted by: <%= highlight display_person(mpq.author), query %></span>
               </td>
             </tr>
           </tbody>

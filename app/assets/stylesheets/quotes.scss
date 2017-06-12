@@ -10,6 +10,7 @@
  .quote-button {
    width: 100%;
  }
+
  // Quote-specific
 
  .quote-box:hover {
@@ -31,4 +32,8 @@
  .author {
    font-size: smaller;
    text-align: left;
+ }
+
+ .highlight {
+   background-color: yellow;
  }

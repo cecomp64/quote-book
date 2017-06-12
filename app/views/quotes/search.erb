@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-xs-12">
         <h2><%=vector.to_s.titleize%> <%=@query%></h2>
-        <%= render partial: 'quotes/index', locals: {quotes: @results[vector], pagination_param: vector} %>
+        <%= render partial: 'quotes/index', locals: {quotes: @results[vector], pagination_param: vector, query: @query} %>
       </div>
     </div>
 <% end %>

@@ -1,0 +1,1 @@
+$('#quote_forms').append('<%= j render(partial: 'quotes/quote_form', locals: {quote: Quote.new}) %>')

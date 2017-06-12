@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'search/:query' => 'quotes#search', as: :query
   get 'search' => 'quotes#search', as: :search
+  get 'mpq' => 'quotes#add_mpq', as: :add_mpq
   resources :quotes
 
   devise_for :users

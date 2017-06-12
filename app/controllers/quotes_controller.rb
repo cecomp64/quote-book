@@ -23,6 +23,9 @@ class QuotesController < ApplicationController
   def edit
   end
 
+  def add_mpq
+  end
+
   def create
     mpqp = quote_params
     errors = []
@@ -34,18 +37,24 @@ class QuotesController < ApplicationController
       errors += @quote.errors.full_messages
     else
       # Process each quote
-      mpqp[:quotes].each do |qp|
-        quote = Quote.create(text: qp[:text], attribution: qp[:attribution])
+      mpqp[:quotes].each_with_index do |qp, index|
+        quote = Quote.create(text: qp[:text], attribution: qp[:attribution], order: index)
+        @quote.quotes << quote
 
         # Shut it down if any of them have errors
         if(quote.errors.any?)
           errors += quote.errors.full_messages
           @quote.quotes.each{|q| q.destroy}
           break
-        else
-          @quote.quotes << quote
         end
       end
+    end
+
+    # Check that at least one quote was created
+    if(@quote.quotes.size == 0)
+      @quote.destroy
+      @quote.quotes << Quote.new
+      errors << 'Fill in at least one quote, you dope!'
     end
 
     # Update person quote counts
@@ -54,12 +63,16 @@ class QuotesController < ApplicationController
         q.attribution.update_attribute(:num_quotes, q.attribution.quotes.count) if(q.attribution)
       end
     else
-      flash[:error] = errors.join('  ')
+      flash.now[:error] = errors.join('  ')
     end
 
     #respond_with(@quote)
     respond_to do |format|
-      format.html {render :show}
+      if(errors.size > 0)
+        format.html {render :new}
+      else
+        format.html {render :show}
+      end
     end
   end
 
@@ -120,6 +133,7 @@ class QuotesController < ApplicationController
       quotes = []
 
       params[:quote].each do |quote|
+        next if((quote[:text].nil? || quote[:text].empty?) && (quote[:attribution].nil? || quote[:attribution].empty?))
         q = personify_params(quote)
         quotes << q
       end

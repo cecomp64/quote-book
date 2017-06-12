@@ -9,7 +9,7 @@
           <tbody>
             <tr>
               <td>
-                <% mpq.quotes.each do |q| %>
+                <% mpq.quotes.order(order: :asc).each do |q| %>
                     <p class="quote"><%= q.text %></p>
                     <p class="attribution"><%= display_person(q.attribution) %></p>
                 <% end %>

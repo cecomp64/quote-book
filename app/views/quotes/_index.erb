@@ -4,7 +4,10 @@
 <% query ||= nil %>
 
 <div class="col-xs-12">
-  <%= paginate(quotes, param_name: pagination_param) if(!quotes.is_a?(Array)) %>
+  <% begin %>
+      <%= paginate(quotes, param_name: pagination_param) if(!quotes.is_a?(Array)) %>
+  <% rescue %>
+  <% end %>
 </div>
 
 <% quotes.each do |quote| %>

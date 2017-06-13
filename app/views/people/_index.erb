@@ -1,3 +1,5 @@
-<% people.each do |person| %>
-    <%= render partial: 'people/show', locals: {person: person} %>
-<% end %>
+<div class="row">
+  <% people.each do |person| %>
+      <%= render partial: 'people/show', locals: {person: person} %>
+  <% end %>
+</div>

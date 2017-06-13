@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-xs-12">
     <h1 class="home">The Quote Book</h1>
-    <%= render partial: 'quotes/show', locals: {quote: @random_quote, width: 12} %>
+    <div class="row">
+      <%= render partial: 'quotes/show', locals: {quote: @random_quote, width: 12} %>
+    </div>
   </div>
 </div>
 
@@ -10,20 +12,20 @@
 <div class="row">
   <div class="col-xs-12">
     <h2>The Best Quotes of All Time!</h2>
-    <%= render partial: 'quotes/index', locals: {quotes: @top_quotes} %>
+      <%= render partial: 'quotes/index', locals: {quotes: @top_quotes} %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
     <h2>Recent Quotes!</h2>
-    <%= render partial: 'quotes/index', locals: {quotes: @recent_quotes} %>
+      <%= render partial: 'quotes/index', locals: {quotes: @recent_quotes} %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
-    <h2>Top Quoters!</h2>
-    <%= render partial: 'people/index', locals: {people: @top_quoters} %>
+    <h2>Loud Mouths</h2>
+      <%= render partial: 'people/index', locals: {people: @top_quoters} %>
   </div>
 </div>

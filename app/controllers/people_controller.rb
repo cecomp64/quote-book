@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   respond_to :html
 
   def index
-    @people = Person.all
+    @people = Person.all.page(params[:page]).per(10)
     respond_with(@people)
   end
 

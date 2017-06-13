@@ -15,6 +15,8 @@
 <% else %>
     <div class="row">
       <div class="col-xs-12">
+        <h2>Say Something, Already...</h2>
+        <p><%= @person.name %> is either very quiet, or under represented in the book.</p>
         <%= render partial: 'quotes/add_quote' %>
       </div>
     </div>

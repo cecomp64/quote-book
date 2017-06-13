@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'vote_for' => 'votes#for', as: :vote_for
   resources :votes
 
   resources :people

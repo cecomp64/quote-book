@@ -36,6 +36,30 @@ class VotesController < ApplicationController
     respond_with(@vote)
   end
 
+  # Non-CRUD functions
+  def for
+    @mpq = MultiPartQuote.find(params[:quote_id])
+    user = User.find(params[:user_id])
+    value = params[:value].to_i
+    errors = []
+
+    @vote = Vote.find_or_create_by(user: user, multi_part_quote: @mpq)
+    # vote: 1, value: 1, increment: -1
+    # vote: 1, value: -1, increment: -2
+    # vote: -1, value: 1, increment: +2
+    # vote: -1, value: -1. increment: +1
+    # vote: 0, value: 1, increment: +1
+    # vote: 0, value: -1, increment: -1
+
+    sign = (@vote.value.nil? || @vote.value == 0) ? value : -@vote.value;
+    magnitude = (@vote.value && @vote.value != 0 && @vote.value != value) ? 2 : 1;
+
+    @vote.update_attribute(:value, (@vote.value == value) ? 0 : value)
+    @score = @mpq.score + (sign * magnitude)
+    @mpq.update_attribute(:score, @score)
+    errors += @vote.errors.full_messages if(@vote.errors.any?)
+  end
+
   private
     def set_vote
       @vote = Vote.find(params[:id])

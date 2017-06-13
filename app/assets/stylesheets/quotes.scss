@@ -1,4 +1,6 @@
- .table-overflow {
+@import 'bootstrap-variables';
+
+.table-overflow {
    overflow-x: auto;
  }
 
@@ -36,4 +38,31 @@
 
  .highlight {
    background-color: yellow;
+ }
+
+ .full {
+   height: 100%;
+   width: 100%;
+   padding: 15px;
+ }
+
+ .full.up-voted {
+   background-color: $alert-success-bg;
+   color: $alert-success-text;
+ }
+
+ .full.dn-voted {
+   background-color: $alert-danger-bg;
+   color: $alert-danger-text;
+ }
+
+ td.vote {
+   width: 55px;
+   padding: 0px !important;
+ }
+
+ .score {
+   font-size: x-small;
+   padding: 0 !important;
+   margin: 0;
  }

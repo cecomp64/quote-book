@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :band_names
+
   get 'vote_for' => 'votes#for', as: :vote_for
   resources :votes
 

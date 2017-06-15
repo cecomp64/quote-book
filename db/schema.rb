@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613201412) do
+ActiveRecord::Schema.define(version: 20170615182820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "band_names", force: true do |t|
+    t.text     "name"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "band_names", ["person_id"], name: "index_band_names_on_person_id", using: :btree
 
   create_table "multi_part_quotes", force: true do |t|
     t.datetime "created_at"

@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to band_names_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_band_name_path(@band_name), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show band_name</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @band_name.name %></dd>
+
+  <dt>Person:</dt>
+  <dd><%= @band_name.person_id %></dd>
+
+</dl>

@@ -1,0 +1,2 @@
+module BandNamesHelper
+end

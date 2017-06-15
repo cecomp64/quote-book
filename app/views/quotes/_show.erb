@@ -18,16 +18,16 @@
             </td>
           </tr>
           <tr>
-            <td class="vote" id="up-<%=mpq.id%>">
+            <td class="vote up-<%=mpq.id%>">
               <%= render partial: 'quotes/upvote', locals: {value: 1, mpq: mpq, vote: current_user ? current_user.votes.where(multi_part_quote: mpq).first : nil} %>
             </td>
             <td>
               <span class="author">Submitted by: <%= highlight display_person(mpq.author), query %></span>
-              <div id="score-<%=mpq.id%>">
+              <div class="score-<%=mpq.id%>">
                 <%= render partial: 'quotes/score', locals: {score: score} %>
               </div>
             </td>
-            <td class="vote" id="dn-<%=mpq.id%>">
+            <td class="vote dn-<%=mpq.id%>">
               <%= render partial: 'quotes/upvote', locals: {value: -1, mpq: mpq, vote: current_user ? current_user.votes.where(multi_part_quote: mpq).first : nil} %>
             </td>
           </tr>

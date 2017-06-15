@@ -3,7 +3,6 @@
 <% pagination_param ||= :page %>
 <% query ||= nil %>
 
-<div class="row">
   <div class="col-xs-12">
     <% begin %>
         <%= paginate(quotes, param_name: pagination_param) if(!quotes.is_a?(Array)) %>
@@ -14,4 +13,3 @@
   <% quotes.each do |quote| %>
       <%= render partial: 'quotes/show', locals: {quote: quote, width: width, query: query} %>
   <% end %>
-</div>

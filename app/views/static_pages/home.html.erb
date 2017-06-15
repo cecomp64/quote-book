@@ -1,4 +1,3 @@
-<div class="row">
   <div class="page-header">
     <h1 class="home">The Quote Book</h1>
     <div class="row">
@@ -8,26 +7,31 @@
       </div>
     </div>
   </div>
-</div>
 
 
 <div class="row">
   <div class="col-xs-12">
     <h2>The Best Quotes of All Time!</h2>
+    <div class="row">
       <%= render partial: 'quotes/index', locals: {quotes: @top_quotes} %>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
     <h2>Recent Quotes!</h2>
+    <div class="row">
       <%= render partial: 'quotes/index', locals: {quotes: @recent_quotes} %>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12">
     <h2>Loud Mouths</h2>
+    <div class="row">
       <%= render partial: 'people/index', locals: {people: @top_quoters} %>
+    </div>
   </div>
 </div>

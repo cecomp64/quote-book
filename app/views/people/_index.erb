@@ -1,6 +1,5 @@
 <% pagination_param ||= :page %>
 
-<div class="row">
     <div class="col-xs-12">
     <% begin %>
         <%= paginate(people, param_name: pagination_param) %>
@@ -11,4 +10,3 @@
   <% people.each do |person| %>
       <%= render partial: 'people/show', locals: {person: person} %>
   <% end %>
-</div>

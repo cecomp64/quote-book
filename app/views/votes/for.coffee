@@ -1,8 +1,11 @@
-$('.up-<%=@mpq.id%>').each (i, obj) ->
-  $(obj).html('<%= j render(partial: 'quotes/upvote', locals: {mpq: @mpq, vote: @vote, value: 1}) %>')
+<% cl = @mpq ? '' : 'band-' %>
+<% id = @mpq ? @mpq.id : @band_name.id %>
 
-$('.dn-<%=@mpq.id%>').each (i, obj) ->
-  $(obj).html('<%= j render(partial: 'quotes/upvote', locals: {mpq: @mpq, vote: @vote, value: -1}) %>')
+$('.up-<%=cl%><%=id%>').each (i, obj) ->
+  $(obj).html('<%= j render(partial: 'quotes/upvote', locals: {mpq: @mpq, band: @band_name, vote: @vote, value: 1}) %>')
 
-$('.score-<%=@mpq.id%>').each (i, obj) ->
+$('.dn-<%=cl%><%=id%>').each (i, obj) ->
+  $(obj).html('<%= j render(partial: 'quotes/upvote', locals: {mpq: @mpq, band: @band_name,  vote: @vote, value: -1}) %>')
+
+$('.score-<%=cl%><%=id%>').each (i, obj) ->
   $(obj).html('<%= j render(partial: 'quotes/score', locals: {score: @score}) %>')

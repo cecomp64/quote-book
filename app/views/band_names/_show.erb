@@ -14,16 +14,16 @@
             </td>
           </tr>
           <tr>
-            <td class="vote band-up-<%=band.id%>">
-              <%= render partial: 'quotes/upvote', locals: {value: 1, mpq: nil, band: band, vote: current_user ? current_user.votes.where(band: band).first : nil} %>
+            <td class="vote up-band-<%=band.id%>">
+              <%= render partial: 'quotes/upvote', locals: {value: 1, mpq: nil, band: band, vote: current_user ? current_user.votes.where(band_name_id: band).first : nil} %>
             </td>
-            <td>
-              <div class="score-<%=band.id%>">
-                <%# render partial: 'quotes/score', locals: {score: band.score} %>
+            <td style="vertical-align: middle">
+              <div class="score-band-<%=band.id%>">
+                <%= render partial: 'quotes/score', locals: {score: band.score} %>
               </div>
             </td>
-            <td class="vote band-dn-<%=band.id%>">
-              <%= render partial: 'quotes/upvote', locals: {value: -1, mpq: nil, band: band, vote: current_user ? current_user.votes.where(band: band).first : nil} %>
+            <td class="vote dn-band-<%=band.id%>">
+              <%= render partial: 'quotes/upvote', locals: {value: -1, mpq: nil, band: band, vote: current_user ? current_user.votes.where(band_name_id: band).first : nil} %>
             </td>
           </tr>
           </tbody>

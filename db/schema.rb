@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615182820) do
+ActiveRecord::Schema.define(version: 20170615203211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170615182820) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",      default: 0
   end
 
   add_index "band_names", ["person_id"], name: "index_band_names_on_person_id", using: :btree
@@ -82,8 +83,10 @@ ActiveRecord::Schema.define(version: 20170615182820) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "multi_part_quote_id"
+    t.integer  "band_name_id"
   end
 
+  add_index "votes", ["band_name_id"], name: "index_votes_on_band_name_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
 end

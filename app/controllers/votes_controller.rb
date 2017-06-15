@@ -38,12 +38,14 @@ class VotesController < ApplicationController
 
   # Non-CRUD functions
   def for
-    @mpq = MultiPartQuote.find(params[:quote_id])
+    @mpq = MultiPartQuote.where(id: params[:quote_id]).first
+    @band_name = BandName.where(id: params[:band_name_id]).first
     user = User.find(params[:user_id])
     value = params[:value].to_i
     errors = []
 
-    @vote = Vote.find_or_create_by(user: user, multi_part_quote: @mpq)
+    @vote = @band_name.nil? ? Vote.find_or_create_by(user: user, multi_part_quote: @mpq) : Vote.find_or_create_by(user: user, band_name: @band_name)
+
     # vote: 1, value: 1, increment: -1
     # vote: 1, value: -1, increment: -2
     # vote: -1, value: 1, increment: +2
@@ -55,9 +57,12 @@ class VotesController < ApplicationController
     magnitude = (@vote.value && @vote.value != 0 && @vote.value != value) ? 2 : 1;
 
     @vote.update_attribute(:value, (@vote.value == value) ? 0 : value)
-    @score = @mpq.score + (sign * magnitude)
-    @mpq.update_attribute(:score, @score)
     errors += @vote.errors.full_messages if(@vote.errors.any?)
+
+    updated = @mpq ? @mpq : @band_name
+
+    @score = updated.score + (sign * magnitude)
+    updated.update_attribute(:score, @score)
   end
 
   private

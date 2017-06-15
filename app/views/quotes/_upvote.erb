@@ -1,4 +1,6 @@
 <% disabled ||= false %>
+<% mpq ||= nil %>
+<% band ||= nil %>
 
 <% if disabled %>
     <div class="full">
@@ -11,20 +13,20 @@
         </div>
     <% elsif vote %>
         <% if((vote.value > 0 && value > 0) || (vote.value < 0 && value < 0)) %>
-            <%= link_to vote_for_path(user_id: current_user ? current_user.id : nil, quote_id: mpq.id, value: value), remote: true do %>
+            <%= link_to vote_for_path(user_id: current_user ? current_user.id : nil, quote_id: mpq ? mpq.id : nil, band_name_id: band ? band.id : nil, value: value), remote: true do %>
                 <div class="full <%= value > 0 ? 'up-voted' : 'dn-voted'%>">
                   <span class="glyphicon <%=value > 0 ? 'glyphicon-plus' : 'glyphicon-minus'%>"></span>
                 </div>
             <% end %>
         <% else %>
-            <%= link_to vote_for_path(user_id: current_user ? current_user.id : nil, quote_id: mpq.id, value: value), remote: true do %>
+            <%= link_to vote_for_path(user_id: current_user ? current_user.id : nil, quote_id: mpq ? mpq.id : nil, band_name_id: band ? band.id : nil, value: value), remote: true do %>
                 <div class="full">
                   <span class="glyphicon <%=value > 0 ? 'glyphicon-plus' : 'glyphicon-minus'%>"></span>
                 </div>
             <% end %>
         <% end %>
     <% else %>
-        <%= link_to vote_for_path(user_id: current_user ? current_user.id : nil, quote_id: mpq.id, value: value), remote: true do %>
+        <%= link_to vote_for_path(user_id: current_user ? current_user.id : nil, quote_id: mpq ? mpq.id : nil, band_name_id: band ? band.id : nil, value: value), remote: true do %>
             <div class="full">
               <span class="glyphicon <%=value > 0 ? 'glyphicon-plus' : 'glyphicon-minus'%>"></span>
             </div>

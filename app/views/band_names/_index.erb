@@ -1,6 +1,9 @@
+<% bands ||= [] %>
+<% pagination_param ||= :page %>
+
 <div class="col-xs-12">
   <% begin %>
-      <%= paginate bands %>
+      <%= paginate bands, param_name: pagination_param %>
   <% rescue %>
   <% end %>
 </div>

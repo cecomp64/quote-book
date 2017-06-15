@@ -24,8 +24,13 @@ class BandNamesController < ApplicationController
     bp = personify_params(band_name_params)
 
     @band_name = BandName.new(bp)
-    @band_name.save
-    respond_with(@band_name)
+    if(@band_name.save)
+      flash[:success] = 'You registered a rad new band name.'
+      respond_with(@band_name)
+    else
+      flash[:error] = @band_name.errors.full_messages.join(' ')
+      redirect_to new_band_name_path
+    end
   end
 
   def update

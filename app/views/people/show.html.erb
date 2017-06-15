@@ -32,12 +32,12 @@
 <% end %>
 
 
-<% if(@my_quotes.size == 0) && (@their_quotes.size == 0) %>
+<% if @bands.size > 0 %>
     <div class="row">
       <div class="col-xs-12">
-        <h2><%= @person.name %> Needs to Say More Stuff!</h2>
-        <%= render partial: 'quotes/add_quote' %>
+        <h2>Your Awesome Band Names</h2>
+        <%= render partial: 'band_names/index', locals: {bands: @bands, pagination_param: :bands} %>
       </div>
     </div>
+<% else %>
 <% end %>
-

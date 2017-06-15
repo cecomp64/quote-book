@@ -1,0 +1,10 @@
+<div class="col-xs-12">
+  <% begin %>
+      <%= paginate bands %>
+  <% rescue %>
+  <% end %>
+</div>
+
+<% bands.each do |band| %>
+    <%= render partial: 'band_names/show', locals: {band: band} %>
+<% end %>

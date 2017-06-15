@@ -3,11 +3,5 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
-    <% begin %>
-      <%= paginate @band_names %>
-    <% rescue %>
-    <% end %>
-  </div>
   <%= render partial: 'band_names/index', locals: {bands: @band_names} %>
 </div>

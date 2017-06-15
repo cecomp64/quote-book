@@ -8,3 +8,10 @@
 <% bands.each do |band| %>
     <%= render partial: 'band_names/show', locals: {band: band} %>
 <% end %>
+
+<% if bands.size == 0 %>
+    <div class="col-xs-12">
+      <p>Where is your Rock and Roll spirit?</p>
+      <%= link_to 'Add A Band Name!', new_band_name_path, role: :button, class: 'btn btn-primary btn-lg quote-button' %>
+    </div>
+<% end %>

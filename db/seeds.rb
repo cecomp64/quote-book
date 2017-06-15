@@ -26,5 +26,24 @@ anonymous = Person.find_or_create_by(name: 'Anonymous')
 quotes.each do |quote|
   author = quote[:author] ? Person.find_or_create_by(name: quote[:author]) : anonymous
   attribution = quote[:attribution] ? Person.find_or_create_by(name: quote[:attribution]) : anonymous
-  Quote.create(text: quote[:text], author: author, attribution: attribution, score: quote[:score])
+  mpq = MultiPartQuote.create(author: author, sore: quote[:score])
+  q = Quote.create(text: quote[:text], attribution: attribution, order: 1)
+  mpq << q
+end
+
+# Need some multi-part-quotes
+
+bands = [
+    {name: 'Purple Tie', person: 'CE'},
+    {name: 'Tokyo Whip', person: 'Anya'},
+    {name: 'Gatorade Frost', person: 'Anya'},
+    {name: 'Nuclear Electron', person: 'LG'},
+    {name: 'Acetronic', person: 'Tara'},
+    {name: 'Seismic Query', person: 'CE'},
+    {name: 'Aero Taro', person: 'CE'},
+]
+
+bands.each do |band|
+  person = Person.find_or_create_by(name: band[:person])
+  BandName.create(name: band[:name], person: person)
 end

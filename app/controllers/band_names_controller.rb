@@ -4,7 +4,7 @@ class BandNamesController < ApplicationController
   respond_to :html
 
   def index
-    @band_names = BandName.all
+    @band_names = BandName.order(created_at: :desc).page(params[:page]).per(20)
     respond_with(@band_names)
   end
 

@@ -6,7 +6,7 @@ class QuotesController < ApplicationController
   MPQ = MultiPartQuote
 
   def index
-    @quotes = MPQ.joins(:quotes).includes(:quotes).order(created_at: :desc).page(params[:page]).per(QUOTES_PER_PAGE)
+    @quotes = MPQ.joins(:quotes).includes(:quotes).order(created_at: :desc).uniq.page(params[:page]).per(QUOTES_PER_PAGE)
     respond_with(@quotes)
   end
 

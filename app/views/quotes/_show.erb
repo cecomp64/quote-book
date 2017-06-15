@@ -19,7 +19,7 @@
               <% else %>
                   <% mpqs.each do |q| %>
                       <p>
-                        <span class="attribution"><%= highlight display_person(q.attribution), query %>:</span>
+                        <span class="attribution quote"><%= highlight display_person(q.attribution), query %>:</span>
                         <span class="quote"><%= highlight q.text, query %></span>
                       </p>
                   <% end %>

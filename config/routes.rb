@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :quotes
 
   devise_for :users
-  get 'users/:id' => 'users#show', as: :user_path
+  get 'config' => 'users#show', as: :user
+  post 'config' => 'users#update', as: :update_user
 
   get 'static_pages/home'
 

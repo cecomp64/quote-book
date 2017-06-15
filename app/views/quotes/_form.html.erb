@@ -10,7 +10,7 @@
     <div class="form-group">
       <%= label_tag :author, 'Who Are You?', class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
-        <%= text_field_tag :author, @quote.author ? @quote.author.name : '', class: "form-control" %>
+        <%= text_field_tag :author, @quote.author ? @quote.author.name : (current_user && current_user.person ?  current_user.person.name : ''), class: "form-control" %>
       </div>
     </div>
     <div class="form-group">

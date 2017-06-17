@@ -10,21 +10,26 @@
           <tbody>
           <tr>
             <td colspan="3">
-              <% mpqs = mpq.quotes.order(order: :asc) %>
-              <% if mpqs.size == 1 %>
-                  <% mpqs.each do |q| %>
-                      <p class="quote"><%= highlight q.text, query %></p>
-                      <p class="attribution"><%= highlight display_person(q.attribution), query %></p>
-                  <% end %>
-              <% else %>
-                  <% mpqs.each do |q| %>
-                      <p>
-                        <span class="attribution quote"><%= highlight display_person(q.attribution), query %>:</span>
-                        <span class="quote"><%= highlight q.text, query %></span>
-                      </p>
-                  <% end %>
-              <% end %>
-              <% score = mpq.score.nil? ? 0 : mpq.score %>
+              <div class="watermark">
+                <span>“</span>
+              </div>
+              <div class="watermark-content">
+                <% mpqs = mpq.quotes.order(order: :asc) %>
+                <% if mpqs.size == 1 %>
+                    <% mpqs.each do |q| %>
+                        <p class="quote"><%= highlight q.text, query %></p>
+                        <p class="attribution"><%= highlight display_person(q.attribution), query %></p>
+                    <% end %>
+                <% else %>
+                    <% mpqs.each do |q| %>
+                        <p>
+                          <span class="attribution quote"><%= highlight display_person(q.attribution), query %>:</span>
+                          <span class="quote"><%= highlight q.text, query %></span>
+                        </p>
+                    <% end %>
+                <% end %>
+                <% score = mpq.score.nil? ? 0 : mpq.score %>
+              </div>
             </td>
           </tr>
           <tr>

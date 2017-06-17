@@ -30,6 +30,8 @@
 
  .quote {
    font-style: italic;
+   font-family: serif;
+   font-size: large;
  }
 
  .attribution {
@@ -75,3 +77,38 @@
  .disabled {
    background: gray;
  }
+
+ // Watermark
+.watermark {
+  position:absolute;
+  z-index: -1;
+  background:white;
+  display:block;
+  min-height:50%;
+  min-width:50%;
+  color:yellow;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  left: 20px;
+}
+
+.watermark span {
+  color:lightgrey;
+  font-size:120px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: -45px;
+  color: #d6e4ef;
+  font-family: serif;
+  #transform:rotate(300deg);
+  #-webkit-transform:rotate(300deg);
+}
+
+.watermark-content {
+  position: relative;
+  z-index: 1;
+  margin-left: 20px;
+  margin-top: 10px;
+}

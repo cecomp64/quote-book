@@ -5,5 +5,5 @@ class Quote < ActiveRecord::Base
 
   validates_presence_of :text, :attribution
 
-  SEARCH_VECTORS = [:attributed_to, :contains, :authored_by]
+  SEARCH_VECTORS = [:attributed_to, :contains, :bands_named, :named_by, :authored_by]
 end

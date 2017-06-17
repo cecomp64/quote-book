@@ -94,6 +94,8 @@ class QuotesController < ApplicationController
     @results[:attributed_to] = MPQ.joins(quotes: :attribution).where('people.name ILIKE ?', "%#{@query}%")
     @results[:authored_by] = MPQ.joins(:author).where('people.name ILIKE ?', "%#{@query}%")
     @results[:contains] = MPQ.joins(:quotes).where('quotes.text ILIKE ?', "%#{@query}%")
+    @results[:bands_named] = BandName.where('band_names.name ILIKE ?', "%#{@query}%")
+    @results[:named_by] = BandName.joins(:person).where('people.name ILIKE ?', "%#{@query}%")
 
     Quote::SEARCH_VECTORS.each do |vector|
       @results[vector] = @results[vector].page(params[vector]).per(results_per_category) if(@results[vector])

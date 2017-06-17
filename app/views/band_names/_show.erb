@@ -9,8 +9,13 @@
           <tbody>
           <tr>
             <td colspan="3">
-              <p class="quote"><%= highlight band.name, query %></p>
-              <p class="attribution"><%= highlight display_person(band.person), query %></p>
+              <div class="watermark">
+                <%= image_tag 'eguitar.png' %>
+              </div>
+              <div class="watermark-content">
+                <p class="quote"><%= highlight band.name, query %></p>
+                <p class="attribution"><%= highlight display_person(band.person), query %></p>
+              </div>
             </td>
           </tr>
           <tr>

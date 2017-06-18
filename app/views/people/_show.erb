@@ -1,6 +1,7 @@
 <% width ||= 6 %>
+<% num ||= 1 %>
 
-<div class="col-xs-12 col-sm-<%=width%>">
+<div class="col-xs-12 col-sm-<%=width%> <%= num % 2 == 0 ? 'clear' : ''%>">
   <h3><%= link_to person.name, person %></h3>
   <table class="table-responsive table table-bordered table-hover">
     <tbody>

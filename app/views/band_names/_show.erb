@@ -1,9 +1,10 @@
 <% band ||= nil %>
 <% width ||= 6 %>
 <% query ||= nil %>
+<% num ||= 1 %>
 
 <% if band %>
-    <div class="col-xs-12 col-sm-<%=width%>">
+    <div class="col-xs-12 col-sm-<%=width%> <%= num % 2 == 0 ? 'clear' : ''%>">
       <div class="quote-box">
         <table class="table table-bordered table-responsive">
           <tbody>

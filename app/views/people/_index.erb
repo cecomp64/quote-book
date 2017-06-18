@@ -7,6 +7,6 @@
     <% end %>
   </div>
 
-  <% people.each do |person| %>
-      <%= render partial: 'people/show', locals: {person: person} %>
+  <% people.each_with_index do |person, i| %>
+      <%= render partial: 'people/show', locals: {person: person, num: i} %>
   <% end %>

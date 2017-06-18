@@ -10,6 +10,6 @@
     <% end %>
   </div>
 
-  <% quotes.each do |quote| %>
-      <%= render partial: 'quotes/show', locals: {quote: quote, width: width, query: query} %>
+  <% quotes.each_with_index do |quote, i| %>
+      <%= render partial: 'quotes/show', locals: {quote: quote, width: width, query: query, num: i} %>
   <% end %>

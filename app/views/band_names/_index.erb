@@ -8,8 +8,8 @@
   <% end %>
 </div>
 
-<% bands.each do |band| %>
-    <%= render partial: 'band_names/show', locals: {band: band, query: @query} %>
+<% bands.each_with_index do |band, i| %>
+    <%= render partial: 'band_names/show', locals: {band: band, query: @query, num: i} %>
 <% end %>
 
 <% if bands.size == 0 %>

@@ -2,9 +2,10 @@
 <% width ||= 6 %>
 <% mpq = quote %>
 <% query ||= nil %>
+<% num ||= 1 %>
 
 <% if mpq %>
-    <div class="col-xs-12 col-sm-<%=width%>">
+    <div class="col-xs-12 col-sm-<%=width%> <%= num % 2 == 0 ? 'clear' : ''%>">
       <div class="quote-box">
         <table class="table table-bordered table-responsive">
           <tbody>

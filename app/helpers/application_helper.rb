@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def display_person(p)
-    return link_to(p.name, p).html_safe if(p)
+  def display_person(p, query = nil)
+    return link_to(p){highlight p.name, query}.html_safe if(p)
   end
 
   def highlight(str, query)

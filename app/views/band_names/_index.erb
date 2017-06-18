@@ -9,7 +9,7 @@
 </div>
 
 <% bands.each do |band| %>
-    <%= render partial: 'band_names/show', locals: {band: band} %>
+    <%= render partial: 'band_names/show', locals: {band: band, query: @query} %>
 <% end %>
 
 <% if bands.size == 0 %>

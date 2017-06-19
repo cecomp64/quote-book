@@ -5,8 +5,29 @@ class QuotesController < ApplicationController
   QUOTES_PER_PAGE = 20
   MPQ = MultiPartQuote
 
+  include FilterHelper
+
   def index
-    @quotes = MPQ.joins(:quotes).includes(:quotes).order(created_at: :desc).uniq.page(params[:page]).per(QUOTES_PER_PAGE)
+    @filter = {}
+
+    raw_filter = params[:filter] || {}
+    raw_filter.map{|k, v| @filter[k.to_sym] = filter(raw_filter, k)}
+
+    @quotes = MPQ.joins(:quotes).includes(:quotes).order(created_at: :desc).uniq
+
+    if(@filter[:author])
+      authors = Person.where('people.name ILIKE ?', "%#{@filter[:author]}%")
+      @quotes = @quotes.where(author: authors)
+    end
+
+    if(@filter[:attribution])
+      people = Person.where('people.name ILIKE ?', "#{@filter[:attribution]}")
+      @quotes = @quotes.where(quotes: {attribution: people})
+    end
+
+    @quotes = @quotes.where('quotes.text ILIKE ?', "%#{@filter[:content]}%") if(@filter[:content])
+    @quotes = @quotes.page(params[:page]).per(QUOTES_PER_PAGE)
+
     respond_with(@quotes)
   end
 

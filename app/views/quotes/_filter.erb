@@ -1,0 +1,27 @@
+<% filters ||= [] %>
+<% current_filter ||= {} %>
+
+<div class="col-xs-12">
+  <% if current_filter.empty? %>
+      <p>No filter - just like my words.</p>
+  <% end %>
+
+  <%= form_tag(quotes_path, class: 'form', role: 'form', method: :get) do %>
+      <div class="row">
+        <% filters.each do |filter| %>
+            <div class="col-xs-12 col-sm-6">
+              <div class="form-group">
+                <%= text_field_tag("filter[#{filter}]", current_filter[filter], class: 'form-control', placeholder: filter.to_s.humanize) %>
+              </div>
+            </div>
+        <% end %>
+
+        <div class="col-xs-12 col-sm-6">
+          <div class="form-group">
+            <%= submit_tag('Apply Filter', class: 'btn btn-primary') %>
+            <%= link_to('Clear Filter', quotes_path, class: 'btn btn-danger') %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>

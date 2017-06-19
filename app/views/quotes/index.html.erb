@@ -3,5 +3,9 @@
 </div>
 
 <div class="row">
+  <%= render partial: 'quotes/filter', locals: {filters: [:attribution, :author, :content], current_filter: @filter} %>
+</div>
+
+<div class="row">
   <%= render partial: 'quotes/index', locals: {quotes: @quotes} %>
 </div>

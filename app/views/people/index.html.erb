@@ -1,6 +1,10 @@
-  <div class="page-header">
-    <h1>All The People</h1>
-  </div>
+<div class="page-header">
+  <h1>All The People</h1>
+</div>
+
+<div class="row">
+  <%= render partial: 'quotes/filter', locals: {filters: [:name], current_filter: @filter, form_path: people_path} %>
+</div>
 
 <div class="row">
   <%= render partial: 'people/index', locals: {people: @people} %>

@@ -3,8 +3,19 @@ class PeopleController < ApplicationController
 
   respond_to :html
 
+  include FilterHelper
+
   def index
-    @people = Person.all.page(params[:page]).per(10)
+    @filter = {}
+
+    raw_filter = params[:filter] || {}
+    raw_filter.map{|k, v| @filter[k.to_sym] = filter(raw_filter, k)}
+
+    @people = Person.all
+    @people = @people.where('people.name ILIKE ?', "#{@filter[:name]}") if(@filter[:name])
+
+    @people = @people.page(params[:page]).per(10)
+
     respond_with(@people)
   end
 

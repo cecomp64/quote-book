@@ -18,14 +18,14 @@
                 <% mpqs = mpq.quotes.order(order: :asc) %>
                 <% if mpqs.size == 1 %>
                     <% mpqs.each do |q| %>
-                        <p class="quote"><%= highlight q.text, query %></p>
-                        <p class="attribution"><%= display_person(q.attribution, query) %></p>
+                        <p class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></p>
+                        <p class="attribution"><%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %></p>
                     <% end %>
                 <% else %>
                     <% mpqs.each do |q| %>
                         <p>
-                          <span class="attribution quote"><%= display_person(q.attribution, query) %>:</span>
-                          <span class="quote"><%= highlight q.text, query %></span>
+                          <span class="attribution quote"><%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %>:</span>
+                          <span class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></span>
                         </p>
                     <% end %>
                 <% end %>
@@ -38,7 +38,7 @@
               <%= render partial: 'quotes/upvote', locals: {value: 1, mpq: mpq, vote: current_user ? current_user.votes.where(multi_part_quote: mpq).first : nil} %>
             </td>
             <td>
-              <span class="author">Submitted by: <%= display_person(mpq.author, query) %></span>
+              <span class="author">Submitted by: <%= display_person(mpq.author, query || (@filter ? @filter[:author] : nil)) %></span>
               <div class="score-<%=mpq.id%>">
                 <%= render partial: 'quotes/score', locals: {score: score} %>
               </div>

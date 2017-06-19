@@ -5,6 +5,6 @@ module ApplicationHelper
 
   def highlight(str, query)
     return str if(query.nil?)
-    str.gsub(/(#{query})/i, '<span class="highlight">\1</span>').html_safe
+    str.gsub(/(#{query.gsub('%','')})/i, '<span class="highlight">\1</span>').html_safe
   end
 end

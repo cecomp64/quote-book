@@ -3,8 +3,19 @@ class BandNamesController < ApplicationController
 
   respond_to :html
 
+  include FilterHelper
+
   def index
-    @band_names = BandName.order(created_at: :desc).page(params[:page]).per(20)
+    @filter = {}
+
+    raw_filter = params[:filter] || {}
+    raw_filter.map{|k, v| @filter[k.to_sym] = filter(raw_filter, k)}
+
+    @band_names = BandName.all.order(created_at: :desc)
+    @band_names = @band_names.joins(:person).where('people.name ILIKE ?', "#{@filter[:attribution]}") if(@filter[:attribution])
+    @band_names = @band_names.where('band_names.name ILIKE ?', "%#{@filter[:band_name]}%") if(@filter[:band_name])
+
+    @band_names = @band_names.page(params[:page]).per(20)
     respond_with(@band_names)
   end
 

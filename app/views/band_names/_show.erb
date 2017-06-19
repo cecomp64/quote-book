@@ -15,8 +15,8 @@
                 <%# image_tag 'music_notes.png' %>
               </div>
               <div class="watermark-content">
-                <p class="quote"><%= highlight band.name, query %></p>
-                <p class="attribution"><%= display_person(band.person, query) %></p>
+                <p class="quote"><%= highlight band.name, query || (@filter ? @filter[:band_name] : nil) %></p>
+                <p class="attribution"><%= display_person(band.person, query || (@filter ? @filter[:attribution] : nil)) %></p>
               </div>
             </td>
           </tr>

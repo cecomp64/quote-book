@@ -7,11 +7,13 @@ class PeopleController < ApplicationController
 
   def index
     @filter = {}
-
     raw_filter = params[:filter] || {}
     raw_filter.map{|k, v| @filter[k.to_sym] = filter(raw_filter, k)}
 
-    @people = Person.all
+    @sort = sort_from_params(params)
+    order = order_from_sort(@sort)
+
+    @people = Person.all.order(order)
     @people = @people.where('people.name ILIKE ?', "#{@filter[:name]}") if(@filter[:name])
 
     @people = @people.page(params[:page]).per(10)

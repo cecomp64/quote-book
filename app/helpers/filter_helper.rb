@@ -23,6 +23,8 @@ module FilterHelper
           str = {score: direction}
         when :date
           str = {created_at: direction}
+        when :name
+          str = {name: direction}
       end
     end
 

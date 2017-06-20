@@ -7,11 +7,13 @@ class BandNamesController < ApplicationController
 
   def index
     @filter = {}
-
     raw_filter = params[:filter] || {}
     raw_filter.map{|k, v| @filter[k.to_sym] = filter(raw_filter, k)}
 
-    @band_names = BandName.all.order(created_at: :desc)
+    @sort = sort_from_params(params)
+    order = order_from_sort(@sort)
+
+    @band_names = BandName.all.order(order)
     @band_names = @band_names.joins(:person).where('people.name ILIKE ?', "#{@filter[:attribution]}") if(@filter[:attribution])
     @band_names = @band_names.where('band_names.name ILIKE ?', "%#{@filter[:band_name]}%") if(@filter[:band_name])
 

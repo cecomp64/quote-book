@@ -6,6 +6,10 @@
   <%= render partial: 'quotes/filter', locals: {filters: [:band_name, :attribution], current_filter: @filter, form_path: band_names_path} %>
 </div>
 
+<div class="row sort-bar">
+  <%= render partial: 'quotes/sort', locals: {orders: [:date, :votes], current_order: @sort, path: :band_names_path} %>
+</div>
+
 <div class="row">
   <%= render partial: 'band_names/index', locals: {bands: @band_names} %>
 </div>

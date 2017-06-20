@@ -7,6 +7,11 @@
       <% direction = current_order[order] ? current_order[order] : :desc %>
       <% new_direction = direction == :asc ? :desc : :asc %>
 
-      <%= link_to order.to_s.humanize, self.send(path, {order: {order => new_direction}, filter: @filter}), class: "btn btn-default btn-block sortable-#{direction}" %>
+      <%= link_to self.send(path, {order: {order => new_direction}, filter: @filter}), class: "btn btn-default btn-block" do %>
+          <% icon = current_order[order] ? (current_order[order] == :asc ? 'glyphicon-arrow-up' : 'glyphicon-arrow-down') : 'glyphicon-sort' %>
+          <span class="glyphicon <%= icon %>"></span>
+          <%= order.to_s.humanize %>
+          <span class="glyphicon <%=icon%>"></span>
+      <% end %>
     </div>
 <% end %>

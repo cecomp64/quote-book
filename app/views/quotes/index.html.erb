@@ -6,6 +6,10 @@
   <%= render partial: 'quotes/filter', locals: {filters: [:attribution, :author, :content], current_filter: @filter} %>
 </div>
 
+<div class="row sort-bar">
+  <%= render partial: 'quotes/sort', locals: {orders: [:date, :votes], current_order: @sort} %>
+</div>
+
 <div class="row">
   <%= render partial: 'quotes/index', locals: {quotes: @quotes} %>
 </div>

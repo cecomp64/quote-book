@@ -9,11 +9,13 @@ class QuotesController < ApplicationController
 
   def index
     @filter = {}
-
     raw_filter = params[:filter] || {}
     raw_filter.map{|k, v| @filter[k.to_sym] = filter(raw_filter, k)}
 
-    @quotes = MPQ.joins(:quotes).includes(:quotes).order(created_at: :desc).uniq
+    @sort = sort_from_params(params)
+    order = order_from_sort(@sort)
+
+    @quotes = MPQ.joins(:quotes).includes(:quotes).order(order).uniq
 
     if(@filter[:author])
       authors = Person.where('people.name ILIKE ?', "%#{@filter[:author]}%")

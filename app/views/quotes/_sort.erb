@@ -3,7 +3,7 @@
 <% path ||= :quotes_path %>
 
 <% orders.each do |order| %>
-    <div class="col-sm-3 col-xs-6 sort-bar">
+    <div class="col-sm-3 col-xs-6">
       <% direction = current_order[order] ? current_order[order] : :desc %>
       <% new_direction = direction == :asc ? :desc : :asc %>
 

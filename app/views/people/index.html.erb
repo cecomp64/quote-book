@@ -2,11 +2,8 @@
   <h1>All The People</h1>
 </div>
 
-<div class="row">
+<div class="col-xs-12 sort-bar">
   <%= render partial: 'quotes/filter', locals: {filters: [:name], current_filter: @filter, form_path: people_path} %>
-</div>
-
-<div class="row sort-bar">
   <%= render partial: 'quotes/sort', locals: {orders: [:name], current_order: @sort, path: :people_path} %>
 </div>
 

@@ -2,11 +2,8 @@
   <h1>All The Band Names</h1>
 </div>
 
-<div class="row">
+<div class="col-xs-12 sort-bar">
   <%= render partial: 'quotes/filter', locals: {filters: [:band_name, :attribution], current_filter: @filter, form_path: band_names_path} %>
-</div>
-
-<div class="row sort-bar">
   <%= render partial: 'quotes/sort', locals: {orders: [:date, :votes], current_order: @sort, path: :band_names_path} %>
 </div>
 

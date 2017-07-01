@@ -2,11 +2,8 @@
   <h1>All The Quotes</h1>
 </div>
 
-<div class="row">
+<div class="col-xs-12 sort-bar">
   <%= render partial: 'quotes/filter', locals: {filters: [:attribution, :author, :content], current_filter: @filter} %>
-</div>
-
-<div class="row sort-bar">
   <%= render partial: 'quotes/sort', locals: {orders: [:date, :votes], current_order: @sort} %>
 </div>
 

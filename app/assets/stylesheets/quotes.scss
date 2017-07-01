@@ -138,10 +138,20 @@
   width: 100%;
 }
 
+/* Filter */
+
 .sort-bar {
   margin-bottom: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
   background: #f9f9f9;
   border: 1px solid #dddddd;
+}
+
+.filter-key {
+  font-weight: bold;
+}
+
+.filter-val {
+  margin-right: 10px;
 }

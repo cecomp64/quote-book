@@ -5,6 +5,14 @@
 <div class="col-xs-12">
   <% if current_filter.empty? %>
       <p>No filter - just like my words.</p>
+  <% else %>
+      <p>
+        <% current_filter.each do |key, val| %>
+            <% next if val.nil? %>
+            <span class="filter-key"><%= key.to_s.humanize %></span>
+            <span class="filter-val"><%= val.to_s %></span>
+        <% end %>
+      </p>
   <% end %>
 
   <%= form_tag(form_path, class: 'form', role: 'form', method: :get) do %>

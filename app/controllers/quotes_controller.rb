@@ -18,7 +18,7 @@ class QuotesController < ApplicationController
     @quotes = MPQ.joins(:quotes).includes(:quotes).order(order).uniq
 
     if(@filter[:author])
-      authors = Person.where('people.name ILIKE ?', "%#{@filter[:author]}%")
+      authors = Person.where('people.name ILIKE ?', "#{@filter[:author]}")
       @quotes = @quotes.where(author: authors)
     end
 

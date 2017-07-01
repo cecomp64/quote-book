@@ -10,3 +10,7 @@
   <% people.each_with_index do |person, i| %>
       <%= render partial: 'people/show', locals: {person: person, num: i} %>
   <% end %>
+
+<% if people.size == 0 %>
+    <%= render 'quotes/no_results' %>
+<% end %>

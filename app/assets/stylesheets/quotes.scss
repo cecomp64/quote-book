@@ -51,6 +51,8 @@
    height: 100%;
    width: 100%;
    padding: 15px;
+   position: relative;
+   z-index: 2;
  }
 
  .full.up-voted {

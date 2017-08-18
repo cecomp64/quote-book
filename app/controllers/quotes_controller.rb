@@ -61,7 +61,7 @@ class QuotesController < ApplicationController
     else
       # Process each quote
       mpqp[:quotes].each_with_index do |qp, index|
-        quote = Quote.create(text: qp[:text], attribution: qp[:attribution], order: index)
+        quote = Quote.create(text: qp[:text], attribution: qp[:attribution], context: qp[:context], order: index)
         @quote.quotes << quote
 
         # Shut it down if any of them have errors
@@ -140,6 +140,7 @@ class QuotesController < ApplicationController
       params[:quote].each do |quote|
         next if((quote[:text].nil? || quote[:text].empty?) && (quote[:attribution].nil? || quote[:attribution].empty?))
         q = personify_params(quote)
+        q.delete(:context) if(q[:context].nil? || q[:context].strip.empty?)
         quotes << q
       end
 

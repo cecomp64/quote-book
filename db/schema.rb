@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615203211) do
+ActiveRecord::Schema.define(version: 20170818042959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170615203211) do
     t.datetime "updated_at"
     t.integer  "order"
     t.integer  "multi_part_quote_id"
+    t.text     "context"
   end
 
   add_index "quotes", ["attribution"], name: "index_quotes_on_attribution", using: :btree

@@ -19,12 +19,16 @@
                 <% if mpqs.size == 1 %>
                     <% mpqs.each do |q| %>
                         <p class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></p>
-                        <p class="attribution"><%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %></p>
+                        <p class="attribution">
+                          <%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %><%= q.context ? "<span class=context>, #{highlight(q.context, query || @filter ? @filter[:context] : nil)}</span>".html_safe : '' %>
+                        </p>
                     <% end %>
                 <% else %>
                     <% mpqs.each do |q| %>
                         <p>
-                          <span class="attribution quote"><%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %>:</span>
+                          <span class="attribution quote">
+                            <%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %><%= q.context ? "<span class=context>, #{highlight(q.context, query || @filter ? @filter[:context] : nil)}</span>".html_safe : '' %>:
+                          </span>
                           <span class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></span>
                         </p>
                     <% end %>

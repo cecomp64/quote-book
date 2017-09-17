@@ -2,6 +2,7 @@
 
 .table-overflow {
    overflow-x: auto;
+  max-width: 0;
  }
 
  // Layout
@@ -26,7 +27,6 @@
 
  .quote-box {
    text-align: center;
-   overflow-x: auto;
  }
 
  .quote {

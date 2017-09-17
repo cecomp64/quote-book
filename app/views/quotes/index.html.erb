@@ -3,7 +3,7 @@
 </div>
 
 <div class="col-xs-12 sort-bar">
-  <%= render partial: 'quotes/filter', locals: {filters: [:attribution, :author, :content], current_filter: @filter} %>
+  <%= render partial: 'quotes/filter', locals: {filters: [:attribution, :author, :content, :context], current_filter: @filter} %>
   <%= render partial: 'quotes/sort', locals: {orders: [:date, :votes], current_order: @sort} %>
 </div>
 

@@ -28,6 +28,7 @@ class QuotesController < ApplicationController
     end
 
     @quotes = @quotes.where('quotes.text ILIKE ?', "%#{@filter[:content]}%") if(@filter[:content])
+    @quotes = @quotes.where('quotes.context ILIKE ?', "%#{@filter[:context]}%") if(@filter[:context])
     @quotes = @quotes.page(params[:page]).per(QUOTES_PER_PAGE)
 
     respond_with(@quotes)

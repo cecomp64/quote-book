@@ -16,7 +16,7 @@
               </div>
               <div class="watermark-content">
                 <% mpqs = mpq.quotes.order(order: :asc) %>
-                <% if mpqs.size == 1 %>
+                <% if true %>
                     <% mpqs.each do |q| %>
                         <p class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></p>
                         <p class="attribution">
@@ -24,14 +24,21 @@
                         </p>
                     <% end %>
                 <% else %>
-                    <% mpqs.each do |q| %>
-                        <p>
-                          <span class="attribution quote">
-                            <%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %><%= q.context ? "<span class=context>, #{highlight(q.context, query || @filter ? @filter[:context] : nil)}</span>".html_safe : '' %>:
-                          </span>
-                          <span class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></span>
-                        </p>
-                    <% end %>
+                    <%# Old MPQ Style... seems unnecessary now %>
+                    <table class="quote-table">
+                      <% mpqs.each do |q| %>
+                          <tr class="quote-row">
+                            <td class="quote-col left">
+                              <span class="attribution quote">
+                                <%= display_person(q.attribution, query || (@filter ? @filter[:attribution] : nil)) %><%= q.context ? "<span class=context>, #{highlight(q.context, query || @filter ? @filter[:context] : nil)}</span>".html_safe : '' %>
+                              </span>
+                            </td>
+                            <td class="quote-col right">
+                              <span class="quote"><%= highlight q.text, query || (@filter ? @filter[:content] : nil) %></span>
+                            </td>
+                          </tr>
+                      <% end %>
+                    </table>
                 <% end %>
                 <% score = mpq.score.nil? ? 0 : mpq.score %>
               </div>

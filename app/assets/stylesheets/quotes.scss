@@ -26,6 +26,7 @@
 
  .quote-box {
    text-align: center;
+   overflow-x: auto;
  }
 
  .quote {
@@ -156,4 +157,21 @@
 
 .filter-val {
   margin-right: 10px;
+}
+
+.quote-table {
+  width: 100%;
+}
+
+.quote-col {
+  padding: 0 10px 5px 10px;
+}
+
+.quote-col.left {
+  text-align: right;
+  width: 20%;
+}
+
+.quote-col.right {
+  text-align: center;
 }
